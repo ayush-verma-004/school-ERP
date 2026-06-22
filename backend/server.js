@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 
 dotenv.config();
+console.log("🔍 Checking DB_URL in environment:", process.env.DB_URL ? "DEFINED" : "UNDEFINED");
 const app = express();
 console.log("✅ Event routes loaded...");
 const allowedOrigins = [
