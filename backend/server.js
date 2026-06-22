@@ -6,8 +6,27 @@ const connectDB = require("./config/db");
 dotenv.config();
 const app = express();
 console.log("✅ Event routes loaded...");
+const allowedOrigins = [
+  "https://playschool-frontend.onrender.com",
+  "https://school-erp-frontend-r8qc.onrender.com",
+  "http://localhost:3000",
+  "http://localhost:5173"
+];
+
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
 app.use(cors({
-  origin: ["https://playschool-frontend.onrender.com", "http://localhost:3000"], 
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]

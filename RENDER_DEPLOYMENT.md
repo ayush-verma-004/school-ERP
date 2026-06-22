@@ -47,6 +47,7 @@ Scroll down and click **Advanced** -> **Add Environment Variable**. Add the foll
 | `EMAIL_PASS` | Your email App Password (not your primary password) |
 | `RAZORPAY_KEY_ID` | Your Razorpay API Key ID |
 | `RAZORPAY_KEY_SECRET` | Your Razorpay API Key Secret |
+| `FRONTEND_URL` | (Optional) Your deployed frontend URL (e.g. `https://school-erp-frontend-r8qc.onrender.com`) to allow CORS requests |
 
 > [!NOTE]
 > Make sure your MongoDB Atlas Database has Network Access configured to allow access from anywhere (`0.0.0.0/0`), as Render's outbound IP addresses are dynamic.
